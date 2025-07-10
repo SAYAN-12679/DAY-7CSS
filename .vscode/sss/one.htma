@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mukherjee Institute</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f6fa;
+        }
+        header {
+            background-color: #2f3640;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #353b48;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        nav a:hover {
+            background-color: #718093;
+        }
+        section {
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 8px;
+            max-width: 800px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+        }
+        form input, form select, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        form button {
+            background-color: #44bd32;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #4cd137;
+        }
+        footer {
+            background-color: #2f3640;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Mukherjee Institute</h1>
+        <p>Empowering Education for Classes 10, 11, 12, JEE & NEET</p>
+    </header>
+
+    <nav>
+        <a href="#courses">Courses</a>
+        <a href="#students">Student Registration</a>
+        <a href="#teachers">Teacher Registration</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="courses" class="card">
+        <h2>Our Courses</h2>
+        <ul>
+            <li>Class 10: Full Syllabus Coverage (CBSE, ICSE, State Boards)</li>
+            <li>Class 11: Foundation + JEE/NEET Preparation</li>
+            <li>Class 12: Advanced Preparation + Board Focus</li>
+            <li>JEE Main + Advanced Full Courses</li>
+            <li>NEET Full Course + Crash Courses</li>
+        </ul>
+    </section>
+
+    <section id="students" class="card">
+        <h2>Student Registration Form</h2>
+        <form id="studentForm">
+            <input type="text" name="studentName" placeholder="Full Name" required>
+            <input type="number" name="age" placeholder="Age" required>
+            <select name="class" required>
+                <option value="">Select Class</option>
+                <option value="10">Class 10</option>
+                <option value="11">Class 11</option>
+                <option value="12">Class 12</option>
+                <option value="jee">JEE Preparation</option>
+                <option value="neet">NEET Preparation</option>
+            </select>
+            <input type="text" name="phone" placeholder="Phone Number" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <textarea name="address" placeholder="Address" rows="3" required></textarea>
+            <button type="submit">Register Student</button>
+        </form>
+    </section>
+
+    <section id="teachers" class="card">
+        <h2>Teacher Registration Form</h2>
+        <form id="teacherForm">
+            <input type="text" name="teacherName" placeholder="Full Name" required>
+            <input type="text" name="subject" placeholder="Subject Expertise" required>
+            <input type="text" name="experience" placeholder="Years of Experience" required>
+            <input type="text" name="phone" placeholder="Phone Number" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <textarea name="address" placeholder="Address" rows="3" required></textarea>
+            <button type="submit">Register Teacher</button>
+        </form>
+    </section>
+
+    <section id="contact" class="card">
+        <h2>Contact Us</h2>
+        <p><strong>Address:</strong> 123 Knowledge Lane, Kolkata, India</p>
+        <p><strong>Phone:</strong> +91 9876543210</p>
+        <p><strong>Email:</strong> info@mukherjeeinstitute.in</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Mukherjee Institute. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('studentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Student Registered Successfully!');
+            this.reset();
+        });
+
+        document.getElementById('teacherForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Teacher Registered Successfully!');
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>

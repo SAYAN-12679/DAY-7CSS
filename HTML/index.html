@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Match Score Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .team-header {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+        .btn {
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cricket Match Score Tracker</h1>
+        <div id="team1-container">
+            <h2 class="team-header">Team 1</h2>
+            <button class="btn" onclick="addPlayer('team1')">Add Player</button>
+            <table id="team1-table">
+                <thead>
+                    <tr>
+                        <th>Player Name</th>
+                        <th>Runs</th>
+                        <th>Balls</th>
+                        <th>Strike Rate</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="team2-container">
+            <h2 class="team-header">Team 2</h2>
+            <button class="btn" onclick="addPlayer('team2')">Add Player</button>
+            <table id="team2-table">
+                <thead>
+                    <tr>
+                        <th>Player Name</th>
+                        <th>Runs</th>
+                        <th>Balls</th>
+                        <th>Strike Rate</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <button class="btn" onclick="calculateRunRate()">Calculate Run Rates</button>
+        <div id="run-rates"></div>
+    </div>
+
+    <script>
+        const teams = {
+            team1: [],
+            team2: []
+        };
+
+        function addPlayer(team) {
+            const playerName = prompt("Enter player name:");
+            if (!playerName) return;
+
+            const runs = parseInt(prompt("Enter runs scored:"), 10) || 0;
+            const balls = parseInt(prompt("Enter balls faced:"), 10) || 0;
+            const strikeRate = balls ? ((runs / balls) * 100).toFixed(2) : 0;
+
+            teams[team].push({ name: playerName, runs, balls, strikeRate });
+            updateTable(team);
+        }
+
+        function updateTable(team) {
+            const tableBody = document.querySelector(`#${team}-table tbody`);
+            tableBody.innerHTML = "";
+
+            teams[team].forEach(player => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${player.name}</td>
+                    <td>${player.runs}</td>
+                    <td>${player.balls}</td>
+                    <td>${player.strikeRate}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function calculateRunRate() {
+            const runRates = {};
+            for (const team in teams) {
+                const totalRuns = teams[team].reduce((sum, player) => sum + player.runs, 0);
+                const totalBalls = teams[team].reduce((sum, player) => sum + player.balls, 0);
+                runRates[team] = totalBalls ? (totalRuns / (totalBalls / 6)).toFixed(2) : 0;
+            }
+            displayRunRates(runRates);
+        }
+
+        function displayRunRates(runRates) {
+            const runRatesDiv = document.getElementById("run-rates");
+            runRatesDiv.innerHTML = `
+                <h3>Run Rates</h3>
+                <p>Team 1: ${runRates.team1} runs per over</p>
+                <p>Team 2: ${runRates.team2} runs per over</p>
+            `;
+        }
+    </script>
+</body>
+</html>
